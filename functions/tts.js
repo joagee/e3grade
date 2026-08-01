@@ -89,22 +89,20 @@ function edgeTTS(text, voice) {
 
       connect(url).then((sock) => {
         ws = sock;
-        ws.addEventListener('open', () => {
-          const dts = dateToString();
-          ws.send(
-            `X-Timestamp:${dts}\r\n` +
-            'Content-Type:application/json; charset=utf-8\r\n' +
-            'Path:speech.config\r\n\r\n' +
-            '{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"true","wordBoundaryEnabled":"false"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}\r\n'
-          );
-          ws.send(
-            `X-RequestId:${connectId()}\r\n` +
-            'Content-Type:application/ssml+xml\r\n' +
-            `X-Timestamp:${dts}Z\r\n` +
-            'Path:ssml\r\n\r\n' +
-            buildSsml(sanitize(text), voice)
-          );
-        });
+        const dts = dateToString();
+        ws.send(
+          `X-Timestamp:${dts}\r\n` +
+          'Content-Type:application/json; charset=utf-8\r\n' +
+          'Path:speech.config\r\n\r\n' +
+          '{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"true","wordBoundaryEnabled":"false"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}\r\n'
+        );
+        ws.send(
+          `X-RequestId:${connectId()}\r\n` +
+          'Content-Type:application/ssml+xml\r\n' +
+          `X-Timestamp:${dts}Z\r\n` +
+          'Path:ssml\r\n\r\n' +
+          buildSsml(sanitize(text), voice)
+        );
 
         ws.addEventListener('message', (event) => {
           if (done) return;
