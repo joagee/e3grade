@@ -19,6 +19,13 @@ async function init() {
   bindTabs();
   updateTopbar();
   renderMap();
+  registerSW();
+}
+
+function registerSW() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
 }
 
 function updateTopbar() {
