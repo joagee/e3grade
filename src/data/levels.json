@@ -31,6 +31,22 @@
       "scene": "🌳 植物秘境",
       "wordIds": ["u4_apple", "u4_banana", "u4_grape", "u4_orange", "u4_air", "u4_water", "u4_flower", "u4_tree", "u4_grass", "u4_sun", "u4_school", "u4_garden", "u4_plant"],
       "letterIds": ["u4_m", "u4_n", "u4_o", "u4_p"]
+    },
+    {
+      "id": 5,
+      "unit": "The colourful world",
+      "zhUnit": "多彩的世界",
+      "scene": "🎨 色彩大陆",
+      "wordIds": ["u5_colour", "u5_red", "u5_blue", "u5_green", "u5_yellow", "u5_black", "u5_white", "u5_pink", "u5_purple", "u5_brown", "u5_bear", "u5_duck", "u5_sea"],
+      "letterIds": ["u5_q", "u5_r", "u5_s", "u5_t", "u5_u"]
+    },
+    {
+      "id": 6,
+      "unit": "Useful numbers",
+      "zhUnit": "有用的数字",
+      "scene": "🔢 数字王国",
+      "wordIds": ["u6_one", "u6_two", "u6_three", "u6_four", "u6_five", "u6_six", "u6_seven", "u6_eight", "u6_nine", "u6_ten", "u6_eat", "u6_cut", "u6_cake", "u6_draw", "u6_year"],
+      "letterIds": ["u6_v", "u6_w", "u6_x", "u6_y", "u6_z"]
     }
   ]
 }
