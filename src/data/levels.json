@@ -7,6 +7,30 @@
       "scene": "🏠 魔法书屋",
       "wordIds": ["u1_name", "u1_nice", "u1_ear", "u1_hand", "u1_eye", "u1_mouth", "u1_arm", "u1_can", "u1_share", "u1_smile", "u1_listen", "u1_help", "u1_say", "u1_friend", "u1_good"],
       "letterIds": ["u1_a", "u1_b", "u1_c", "u1_d"]
+    },
+    {
+      "id": 2,
+      "unit": "Different families",
+      "zhUnit": "不同的家庭",
+      "scene": "🏠 魔法之家",
+      "wordIds": ["u2_mum", "u2_dad", "u2_grandma", "u2_grandpa", "u2_sister", "u2_brother", "u2_cousin", "u2_family", "u2_me", "u2_have", "u2_big", "u2_small", "u2_baby", "u2_uncle", "u2_aunt"],
+      "letterIds": ["u2_e", "u2_f", "u2_g", "u2_h"]
+    },
+    {
+      "id": 3,
+      "unit": "Our animal friends",
+      "zhUnit": "动物朋友",
+      "scene": "🦁 魔法动物乐园",
+      "wordIds": ["u3_dog", "u3_cat", "u3_fish", "u3_bird", "u3_rabbit", "u3_panda", "u3_monkey", "u3_tiger", "u3_lion", "u3_elephant", "u3_giraffe", "u3_fox", "u3_pet", "u3_zoo", "u3_like"],
+      "letterIds": ["u3_i", "u3_j", "u3_k", "u3_l"]
+    },
+    {
+      "id": 4,
+      "unit": "Plants around us",
+      "zhUnit": "身边的植物",
+      "scene": "🌳 植物秘境",
+      "wordIds": ["u4_apple", "u4_banana", "u4_grape", "u4_orange", "u4_air", "u4_water", "u4_flower", "u4_tree", "u4_grass", "u4_sun", "u4_school", "u4_garden", "u4_plant"],
+      "letterIds": ["u4_m", "u4_n", "u4_o", "u4_p"]
     }
   ]
 }

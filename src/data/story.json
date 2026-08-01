@@ -15,6 +15,54 @@
         { "speaker": "nar", "name": "旁白", "emoji": "🌙", "text": "魔法书合上了，但它还在轻轻发着光……", "voice": "zh" }
       ],
       "nextHint": "🔮 明天：魔法书带你回家见家人，新的词语魔力正等着你！"
+    },
+    {
+      "id": 2,
+      "intro": [
+        { "speaker": "nar", "name": "旁白", "emoji": "🌅", "text": "第二天，魔法书带着你来到一座会发光的房子前。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "欢迎来到我的家！我的家人们也愿意帮你找回词语。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "这是我的奶奶和爷爷，还有爸爸、妈妈和妹妹。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "This is my family. Mum, dad and me!", "voice": "en" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "跟我一起认识家人们，学会家人的词语吧！", "voice": "zh" }
+      ],
+      "outro": [
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "太棒了！第二片魔法宝石也亮起来了！家人们都为你骄傲。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "明天，我们要去动物乐园。那里的动物朋友正等着我们。", "voice": "zh" },
+        { "speaker": "nar", "name": "旁白", "emoji": "🌙", "text": "魔法书的声音带着一丝紧张……它在担心谁呢？", "voice": "zh" }
+      ],
+      "nextHint": "🦁 明天：动物乐园的动物们被黑雾怪困住了，等你来帮忙！"
+    },
+    {
+      "id": 3,
+      "intro": [
+        { "speaker": "nar", "name": "旁白", "emoji": "☀️", "text": "第三天，你们来到动物乐园，可是大门被一把魔法锁锁住了。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "是黑雾怪干的！它把动物们的名字咒语全偷走了。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "只要念出它们的名字，动物们就能重获自由！", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "Dog, cat, fish, bird and rabbit!", "voice": "en" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "让我们一个一个救出它们吧！", "voice": "zh" }
+      ],
+      "outro": [
+        { "speaker": "nar", "name": "旁白", "emoji": "🎉", "text": "动物们都自由了！它们开心地围着你转圈。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "第三片宝石亮了起来！明天，我们去植物秘境看看。", "voice": "zh" },
+        { "speaker": "nar", "name": "旁白", "emoji": "🌿", "text": "动物乐园的后门，通向一座神秘的植物秘境……", "voice": "zh" }
+      ],
+      "nextHint": "🌳 明天：植物秘境的精灵们正焦急地等着你！"
+    },
+    {
+      "id": 4,
+      "intro": [
+        { "speaker": "nar", "name": "旁白", "emoji": "🌥️", "text": "第四天，你们来到植物秘境，那里的小花小草都垂着头。", "voice": "zh" },
+        { "speaker": "elf", "name": "小精灵", "emoji": "🧚", "text": "呜……黑雾怪偷走了太阳、水和空气，植物们快撑不住了！", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "别怕！念出它们需要的词语，就能让植物恢复生机。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "Sun, water, air, flowers and trees!", "voice": "en" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "帮植物们找回生机吧，小魔法师！", "voice": "zh" }
+      ],
+      "outro": [
+        { "speaker": "elf", "name": "小精灵", "emoji": "🧚", "text": "谢谢你们！植物们都活过来了，你看它们多开心！", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "第四片宝石亮了！明天，我们要去一个没有颜色的世界……", "voice": "zh" },
+        { "speaker": "nar", "name": "旁白", "emoji": "🎨", "text": "远方的世界，正在一点一点失去颜色。", "voice": "zh" }
+      ],
+      "nextHint": "🎨 明天：一个失去颜色的世界，正等你用词语为它涂上色彩！"
     }
   ]
 }
