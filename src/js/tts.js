@@ -51,7 +51,7 @@ function buildSsml(text, voice) {
   return `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'><voice name='${voice}'><prosody pitch='+0Hz' rate='+0%' volume='+0%'>${text}</prosody></voice></speak>`;
 }
 
-export async function speak(text, { voice = VOICES.en } = {}) {
+async function speakDirect(text, voice) {
   const url = `${WSS_BASE}?TrustedClientToken=${TRUSTED_CLIENT_TOKEN}&ConnectionId=${connectId()}&Sec-MS-GEC=${await generateSecMsGec()}&Sec-MS-GEC-Version=${SEC_MS_GEC_VERSION}`;
   return new Promise((resolve, reject) => {
     let ws;
@@ -120,4 +120,16 @@ export async function speak(text, { voice = VOICES.en } = {}) {
 
     ws.onerror = () => fail(new Error('TTS 连接失败'));
   });
+}
+
+export async function speak(text, { voice = VOICES.en } = {}) {
+  try {
+    const res = await fetch('/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, voice }),
+    });
+    if (res.ok) return res.blob();
+  } catch (_) {}
+  return speakDirect(text, voice);
 }
