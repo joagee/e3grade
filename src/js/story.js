@@ -1,4 +1,4 @@
-import { chapterStory, loadData } from './data.js';
+import { chapterStory, chapterById, loadData } from './data.js';
 import { speak, VOICES } from './tts.js';
 
 let currentAudio = null;
@@ -34,12 +34,13 @@ function playLine(line) {
 export async function startStory(container, chapterId, { lines = 'intro', onComplete } = {}) {
   await loadData();
   const story = chapterStory(chapterId);
+  const level = chapterById(chapterId);
   const linesArr = story[lines];
   let index = 0;
 
   container.innerHTML = `
     <div class="story-view">
-      <div class="story-scene">${story.scene}</div>
+      <div class="story-scene">${level.scene}</div>
       <div class="story-dialog">
         <div class="story-speaker">
           <span class="story-emoji"></span>
