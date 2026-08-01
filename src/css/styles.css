@@ -1,0 +1,90 @@
+:root {
+  --primary: #4e7cff;
+  --primary-dark: #3a63d9;
+  --accent: #ffb02e;
+  --bg: #f2f6ff;
+  --card: #ffffff;
+  --text: #2b3a55;
+  --text-light: #7b8bab;
+  --radius: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  user-select: none;
+}
+
+#app {
+  max-width: 520px;
+  margin: 0 auto;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 2px 8px rgba(74, 108, 220, 0.25);
+}
+
+#view {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+#tabbar {
+  display: flex;
+  background: var(--card);
+  border-top: 1px solid #e6ecf7;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.tab.active {
+  color: var(--primary);
+}
+
+.placeholder {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 16px;
+  background: var(--card);
+  border-radius: var(--radius);
+}
+
+button {
+  font-family: inherit;
+}
