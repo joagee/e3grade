@@ -2,6 +2,7 @@ import { loadData, chapterById, chapterStory } from './data.js';
 import * as econ from './economy.js';
 import { startStory } from './story.js';
 import { startChapter } from './game.js';
+import { sfx, unlock } from './sfx.js';
 
 const viewEl = document.getElementById('view');
 const coinEl = document.getElementById('coin-balance');
@@ -13,6 +14,7 @@ let playingChapterId = null;
 
 async function init() {
   registerSW();
+  setupAudioUnlock();
   data = await loadData();
   state = await econ.getState();
   await econ.registerPlay();
@@ -20,6 +22,15 @@ async function init() {
   bindTabs();
   updateTopbar();
   renderMap();
+}
+
+function setupAudioUnlock() {
+  const unlockOnce = () => {
+    unlock();
+    sfx.tap();
+  };
+  document.addEventListener('pointerdown', unlockOnce, { once: true });
+  document.addEventListener('touchstart', unlockOnce, { once: true });
 }
 
 function registerSW() {
@@ -118,6 +129,9 @@ async function settleChapter(id, result) {
   state = await econ.persistState(state);
   updateTopbar();
 
+  if (id >= 6) sfx.win();
+  else sfx.gem();
+
   const hint = chapterStory(id)?.nextHint || '';
   viewEl.innerHTML = `
     <div class="result-card">
@@ -172,18 +186,21 @@ function renderShop() {
 
   document.querySelectorAll('.shop-buy').forEach((btn) => {
     btn.addEventListener('click', async () => {
+      sfx.tap();
       const ok = await econ.equipFromShop(btn.dataset.id);
       state = await econ.getState();
       updateTopbar();
       if (!ok) {
         btn.textContent = '金币不够哦';
       } else {
+        sfx.coin();
         renderShop();
       }
     });
   });
 
   document.querySelector('.gacha-btn').addEventListener('click', async () => {
+    sfx.gacha();
     const item = await econ.gachaPull();
     state = await econ.getState();
     updateTopbar();
@@ -192,6 +209,8 @@ function renderShop() {
       resultEl.textContent = '🪙 金币不够，先去闯关赚吧！';
       return;
     }
+    if (item.rarity === 'legend') sfx.win();
+    else sfx.gem();
     const rarityText = item.rarity === 'legend' ? '🌟 传说！' : item.rarity === 'rare' ? '✨ 稀有！' : '';
     resultEl.textContent = `🎁 抽到了：${item.emoji} ${item.name} ${rarityText}`;
     viewEl.querySelector('.gacha-pity').textContent =

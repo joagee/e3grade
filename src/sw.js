@@ -1,4 +1,4 @@
-const CACHE = 'eai-v1';
+const CACHE = 'eai-v2';
 const PRECACHE = [
   './',
   './index.html',
@@ -10,6 +10,7 @@ const PRECACHE = [
   './js/story.js',
   './js/tts.js',
   './js/storage.js',
+  './js/sfx.js',
   './data/story.json',
   './data/levels.json',
   './data/vocabulary.json',

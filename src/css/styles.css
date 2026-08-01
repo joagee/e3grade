@@ -270,3 +270,61 @@ button {
 .wear-item.active { border-color: var(--primary); background: #eef3ff; }
 .wear-emoji { font-size: 30px; display: block; }
 .wear-name { font-size: 12px; }
+
+.tab:active, .btn:active, .btn-primary:active, .q-option:active {
+  transform: scale(0.96);
+}
+.tab, .btn, .btn-primary, .q-option {
+  transition: transform 0.08s ease;
+}
+
+.story-text.enter {
+  animation: fadeUp 0.4s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.learn-word.pop {
+  animation: pop 0.35s ease;
+}
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.q-option.correct-anim {
+  background: #e8f8f0;
+  border-color: #22a06b;
+  animation: bounce 0.45s ease;
+}
+@keyframes bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.12); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.q-option.wrong {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+  animation: shake 0.35s ease;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.q-feedback.good {
+  animation: pop 0.3s ease;
+}
+
+.result-title {
+  animation: pop 0.5s ease;
+}
+.result-gems, .result-coins {
+  animation: fadeUp 0.5s ease;
+}

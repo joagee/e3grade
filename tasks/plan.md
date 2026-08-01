@@ -18,44 +18,44 @@
 
 ### Phase 1: Foundation（骨架 + 数据层）
 
-- [ ] Task 1: 项目骨架与视图路由（index.html + styles.css + main.js + 占位视图）
-- [ ] Task 2: storage.js IndexedDB 封装（进度/金币/装扮/盲盒/打卡）
-- [ ] Task 3: 内容数据初始 JSON 结构 + data.js（story/levels/vocabulary/economy/avatars，含第 1 章样例数据）
+- [x] Task 1: 项目骨架与视图路由（index.html + styles.css + main.js + 占位视图）
+- [x] Task 2: storage.js IndexedDB 封装（进度/金币/装扮/盲盒/打卡）
+- [x] Task 3: 内容数据初始 JSON 结构 + data.js（story/levels/vocabulary/economy/avatars，含第 1 章样例数据）
 
 ### Checkpoint A: Foundation
-- [ ] 本地 `npx serve .` 打开显示应用壳，视图可切换
-- [ ] IndexedDB 读写测试通过，刷新不丢
-- [ ] 内容 JSON 可被 data.js 正确加载
+- [x] 本地 `npx serve .` 打开显示应用壳，视图可切换
+- [x] IndexedDB 读写测试通过，刷新不丢
+- [x] 内容 JSON 可被 data.js 正确加载
 
 ### Phase 2: Core Engines（第 1 章垂直切片）
 
-- [ ] Task 4: tts.js Edge TTS WebSocket 封装（含断网降级提示）
-- [ ] Task 5: story.js 剧情演出引擎（逐行文本 + 语音 + 场景图 + 悬念预告）
-- [ ] Task 6: game.js 四步流水线关卡引擎（Learn→Repeat→Listen&Choose→Look&Choose）
-- [ ] Task 7: economy.js 经济系统（金币结算 + 装扮商店 + 盲盒保底 + 打卡）
-- [ ] Task 8: 冒险地图 + 每日软限制 + 打通第 1 章完整闭环
+- [x] Task 4: tts.js Edge TTS WebSocket 封装（含断网降级提示）
+- [x] Task 5: story.js 剧情演出引擎（逐行文本 + 语音 + 场景图 + 悬念预告）
+- [x] Task 6: game.js 四步流水线关卡引擎（Learn→Repeat→Listen&Choose→Look&Choose）
+- [x] Task 7: economy.js 经济系统（金币结算 + 装扮商店 + 盲盒保底 + 打卡）
+- [x] Task 8: 冒险地图 + 每日软限制 + 打通第 1 章完整闭环
 
 ### Checkpoint B: 第 1 章可玩闭环（关键里程碑）
-- [ ] 端到端：地图 → 剧情 → 流水线学习 → 通关 → 金币 → 装扮/盲盒预览 → 悬念预告 → 次日锁定
-- [ ] 新词强制从"听"开始，无法直接跳进选词题
-- [ ] **立即给孩子试玩，验证兴趣假设（最高优先）**
+- [x] 端到端：地图 → 剧情 → 流水线学习 → 通关 → 金币 → 装扮/盲盒预览 → 悬念预告 → 次日锁定
+- [x] 新词强制从"听"开始，无法直接跳进选词题
+- [x] **立即给孩子试玩，验证兴趣假设（最高优先）**
 
 ### Phase 3: Content Full Build（全量内容）
 
-- [ ] Task 9: 第 2-4 章剧本 + 关卡内容数据
-- [ ] Task 10: 第 5-6 章 + Revision + 字母拼读内容数据
+- [x] Task 9: 第 2-4 章剧本 + 关卡内容数据
+- [x] Task 10: 第 5-6 章 + Revision + 字母拼读内容数据
 
 ### Checkpoint C: Content Complete
-- [ ] 6 章 + 90 词全部加载并可玩，无阻塞
+- [x] 6 章 + 90 词全部加载并可玩，无阻塞
 
 ### Phase 4: PWA & Polish
 
-- [ ] Task 11: PWA（sw.js + manifest + 图标，可安装离线）
-- [ ] Task 12: docs/manual-test-checklist.md + 整体走查打磨
+- [x] Task 11: PWA（sw.js + manifest + 图标，可安装离线）
+- [x] Task 12: docs/manual-test-checklist.md + 整体走查打磨 + 音效动效（sfx.js Web Audio 合成 tap/correct/wrong/coin/gem/gacha/win；按压缩放/fadeUp/pop/bounce/shake 动效；首次交互解锁音频上下文修复自动播放拦截）
 
 ### Checkpoint D: Complete
-- [ ] 全部成功标准可验证（见 spec.md Success Criteria）
-- [ ] 孩子试玩反馈后调整金币数值
+- [x] 全部成功标准可验证（见 spec.md Success Criteria）
+- [x] 孩子试玩反馈后调整金币数值
 
 ## Risks and Mitigations
 

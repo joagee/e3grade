@@ -1,28 +1,11 @@
 import { loadData, wordById, chapterById } from './data.js';
 import { speak, VOICES } from './tts.js';
-
-let currentAudio = null;
-let currentUrl = null;
-
-function stopAudio() {
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio = null;
-  }
-  if (currentUrl) {
-    URL.revokeObjectURL(currentUrl);
-    currentUrl = null;
-  }
-}
+import { sfx, playBlob, stopTts } from './sfx.js';
 
 function playWord(wordObj) {
-  stopAudio();
+  stopTts();
   speak(wordObj.word, { voice: VOICES.en })
-    .then((blob) => {
-      currentUrl = URL.createObjectURL(blob);
-      currentAudio = new Audio(currentUrl);
-      currentAudio.play().catch(() => {});
-    })
+    .then((blob) => playBlob(blob))
     .catch(() => {});
 }
 
@@ -77,30 +60,30 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
 
   function renderLearn(step) {
     const w = wordById(step.id);
-    stopAudio();
+    stopTts();
     container.innerHTML = `
       ${progress()}
       <div class="learn-card">
         <div class="learn-emoji">${w.emoji}</div>
-        <div class="learn-word">${w.word}</div>
+        <div class="learn-word pop">${w.word}</div>
         <div class="learn-phonetic">${w.phonetic}</div>
         <div class="learn-zh">${w.zh}</div>
       </div>
       <button class="btn-primary learn-speak">🔊 听一听</button>
       <button class="btn-primary learn-next">学会了，下一步 →</button>`;
-    container.querySelector('.learn-speak').addEventListener('click', () => playWord(w));
-    container.querySelector('.learn-next').addEventListener('click', next);
-    speak(w.word, { voice: VOICES.en }).catch(() => {});
+    container.querySelector('.learn-speak').addEventListener('click', () => { sfx.tap(); playWord(w); });
+    container.querySelector('.learn-next').addEventListener('click', () => { sfx.tap(); next(); });
+    playWord(w);
   }
 
   function renderRepeat(step) {
     const w = wordById(step.id);
-    stopAudio();
+    stopTts();
     let recordingBlob = null;
     container.innerHTML = `
       ${progress()}
       <div class="repeat-card">
-        <div class="learn-word">${w.word}</div>
+        <div class="learn-word pop">${w.word}</div>
         <div class="learn-zh">${w.zh} · ${w.emoji}</div>
       </div>
       <button class="btn-primary repeat-listen">🔊 听原音</button>
@@ -114,9 +97,9 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
     const goodBtn = container.querySelector('.repeat-good');
     const retryBtn = container.querySelector('.repeat-retry');
 
-    container.querySelector('.repeat-listen').addEventListener('click', () => playWord(w));
-    retryBtn.addEventListener('click', () => playWord(w));
-    goodBtn.addEventListener('click', next);
+    container.querySelector('.repeat-listen').addEventListener('click', () => { sfx.tap(); playWord(w); });
+    retryBtn.addEventListener('click', () => { sfx.tap(); playWord(w); });
+    goodBtn.addEventListener('click', () => { sfx.tap(); next(); });
 
     let stream = null;
     let recorder = null;
@@ -124,6 +107,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
 
     recordBtn.addEventListener('click', async () => {
       if (recorder && recorder.state === 'recording') {
+        sfx.tap();
         recorder.stop();
         return;
       }
@@ -153,6 +137,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
     });
 
     playBtn.addEventListener('click', () => {
+      sfx.tap();
       if (recordingBlob) {
         const url = URL.createObjectURL(recordingBlob);
         new Audio(url).play().catch(() => {});
@@ -162,7 +147,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
 
   function renderChoose(step) {
     const w = wordById(step.id);
-    stopAudio();
+    stopTts();
     const options = pickOptions(pool, step.id, 4).map(wordById);
     container.innerHTML = `
       ${progress()}
@@ -179,8 +164,8 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
       </div>`;
 
     if (step.type === 'listen_choose') {
-      container.querySelector('.q-listen').addEventListener('click', () => speak(w.word, { voice: VOICES.en }).catch(() => {}));
-      speak(w.word, { voice: VOICES.en }).catch(() => {});
+      container.querySelector('.q-listen').addEventListener('click', () => { sfx.tap(); playWord(w); });
+      playWord(w);
     }
 
     const feedback = container.querySelector('.q-feedback');
@@ -190,11 +175,14 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
         total += 1;
         if (btn.dataset.w === w.word) {
           score += 1;
+          sfx.correct();
           feedback.textContent = '🎉 太棒了！';
           feedback.className = 'q-feedback good';
+          btn.classList.add('correct-anim');
           container.querySelectorAll('.q-option').forEach((b) => { b.disabled = true; });
           setTimeout(next, 700);
         } else {
+          sfx.wrong();
           feedback.textContent = '再想想哦～';
           feedback.className = 'q-feedback try';
           btn.disabled = true;

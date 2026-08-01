@@ -1,19 +1,6 @@
 import { chapterStory, chapterById, loadData } from './data.js';
 import { speak, VOICES } from './tts.js';
-
-let currentAudio = null;
-let currentUrl = null;
-
-function stopAudio() {
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio = null;
-  }
-  if (currentUrl) {
-    URL.revokeObjectURL(currentUrl);
-    currentUrl = null;
-  }
-}
+import { sfx, playBlob, stopTts } from './sfx.js';
 
 function voiceFor(line) {
   if (line.voice === 'en') return line.speaker === 'book' ? VOICES.enBoy : VOICES.en;
@@ -21,13 +8,9 @@ function voiceFor(line) {
 }
 
 function playLine(line) {
-  stopAudio();
+  stopTts();
   speak(line.text, { voice: voiceFor(line) })
-    .then((blob) => {
-      currentUrl = URL.createObjectURL(blob);
-      currentAudio = new Audio(currentUrl);
-      currentAudio.play().catch(() => {});
-    })
+    .then((blob) => playBlob(blob))
     .catch(() => {});
 }
 
@@ -61,12 +44,16 @@ export async function startStory(container, chapterId, { lines = 'intro', onComp
     emojiEl.textContent = line.emoji;
     nameEl.textContent = line.name;
     textEl.textContent = line.text;
+    textEl.classList.remove('enter');
+    void textEl.offsetWidth;
+    textEl.classList.add('enter');
     nextBtn.textContent = index === linesArr.length - 1 ? '出发闯关 🚀' : '下一句 ▶';
     playLine(line);
   }
 
   nextBtn.addEventListener('click', () => {
-    stopAudio();
+    sfx.tap();
+    stopTts();
     if (index < linesArr.length - 1) {
       index += 1;
       render();
