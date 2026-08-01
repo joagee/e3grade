@@ -197,3 +197,76 @@ button {
 .q-feedback { min-height: 28px; margin-top: 14px; font-size: 18px; font-weight: 700; }
 .q-feedback.good { color: #22a06b; }
 .q-feedback.try { color: #ff8c42; }
+
+.view-title { text-align: center; margin-bottom: 16px; font-size: 22px; }
+
+.island-list { display: flex; flex-direction: column; gap: 12px; }
+.island-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--card);
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(43, 58, 85, 0.08);
+}
+.island-card.locked { opacity: 0.55; }
+.island-icon { font-size: 36px; }
+.island-info { flex: 1; }
+.island-unit { font-weight: 700; font-size: 16px; }
+.island-scene { color: var(--text-light); font-size: 14px; margin-top: 4px; }
+.island-status { color: var(--primary); font-size: 14px; font-weight: 600; }
+
+.result-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(43, 58, 85, 0.08);
+}
+.result-title { font-size: 28px; font-weight: 800; margin-bottom: 16px; color: var(--accent); }
+.result-gems { font-size: 20px; margin-bottom: 8px; }
+.result-coins { font-size: 20px; margin-bottom: 16px; color: var(--primary-dark); font-weight: 700; }
+.result-hint { color: var(--text-light); margin-bottom: 24px; font-size: 15px; line-height: 1.6; }
+
+.coin-banner { text-align: center; font-size: 22px; font-weight: 800; margin-bottom: 16px; color: var(--accent); }
+.gacha-area { background: var(--card); border-radius: var(--radius); padding: 20px; text-align: center; margin-bottom: 16px; }
+.gacha-pity { color: var(--text-light); font-size: 13px; margin-top: 10px; }
+.gacha-result { min-height: 24px; margin-top: 10px; font-weight: 700; }
+
+.shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.shop-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(43, 58, 85, 0.08);
+}
+.shop-emoji { font-size: 44px; display: block; margin-bottom: 6px; }
+.shop-name { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+.shop-owned { color: #22a06b; font-size: 14px; font-weight: 700; }
+
+.avatar-preview {
+  font-size: 60px;
+  text-align: center;
+  padding: 24px;
+  background: var(--card);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+}
+.wear-slot { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+.wear-slot-label { font-weight: 700; margin-bottom: 12px; }
+.wear-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.wear-item {
+  padding: 10px 4px;
+  border: 2px solid #e6ecf7;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+.wear-item.active { border-color: var(--primary); background: #eef3ff; }
+.wear-emoji { font-size: 30px; display: block; }
+.wear-name { font-size: 12px; }

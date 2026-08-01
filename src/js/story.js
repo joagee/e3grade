@@ -25,10 +25,10 @@ function playLine(line) {
     .catch(() => {});
 }
 
-export async function startStory(container, chapterId, { onComplete } = {}) {
+export async function startStory(container, chapterId, { lines = 'intro', onComplete } = {}) {
   await loadData();
   const story = chapterStory(chapterId);
-  const lines = story.intro;
+  const linesArr = story[lines];
   let index = 0;
 
   container.innerHTML = `
@@ -50,17 +50,17 @@ export async function startStory(container, chapterId, { onComplete } = {}) {
   const nextBtn = container.querySelector('.story-next');
 
   function render() {
-    const line = lines[index];
+    const line = linesArr[index];
     emojiEl.textContent = line.emoji;
     nameEl.textContent = line.name;
     textEl.textContent = line.text;
-    nextBtn.textContent = index === lines.length - 1 ? '出发闯关 🚀' : '下一句 ▶';
+    nextBtn.textContent = index === linesArr.length - 1 ? '出发闯关 🚀' : '下一句 ▶';
     playLine(line);
   }
 
   nextBtn.addEventListener('click', () => {
     stopAudio();
-    if (index < lines.length - 1) {
+    if (index < linesArr.length - 1) {
       index += 1;
       render();
     } else if (onComplete) {
