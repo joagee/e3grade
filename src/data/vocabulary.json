@@ -1,0 +1,23 @@
+{
+  "words": [
+    { "id": "u1_name", "word": "name", "phonetic": "/neɪm/", "zh": "名字", "emoji": "🏷️", "type": "word", "unit": 1 },
+    { "id": "u1_nice", "word": "nice", "phonetic": "/naɪs/", "zh": "友好的", "emoji": "😊", "type": "word", "unit": 1 },
+    { "id": "u1_ear", "word": "ear", "phonetic": "/ɪə(r)/", "zh": "耳朵", "emoji": "👂", "type": "word", "unit": 1 },
+    { "id": "u1_hand", "word": "hand", "phonetic": "/hænd/", "zh": "手", "emoji": "✋", "type": "word", "unit": 1 },
+    { "id": "u1_eye", "word": "eye", "phonetic": "/aɪ/", "zh": "眼睛", "emoji": "👁️", "type": "word", "unit": 1 },
+    { "id": "u1_mouth", "word": "mouth", "phonetic": "/maʊθ/", "zh": "嘴", "emoji": "👄", "type": "word", "unit": 1 },
+    { "id": "u1_arm", "word": "arm", "phonetic": "/ɑːm/", "zh": "胳膊", "emoji": "💪", "type": "word", "unit": 1 },
+    { "id": "u1_can", "word": "can", "phonetic": "/kæn/", "zh": "可以", "emoji": "✅", "type": "word", "unit": 1 },
+    { "id": "u1_share", "word": "share", "phonetic": "/ʃeə(r)/", "zh": "分享", "emoji": "🤝", "type": "word", "unit": 1 },
+    { "id": "u1_smile", "word": "smile", "phonetic": "/smaɪl/", "zh": "微笑", "emoji": "😄", "type": "word", "unit": 1 },
+    { "id": "u1_listen", "word": "listen", "phonetic": "/ˈlɪsn/", "zh": "听", "emoji": "🔊", "type": "word", "unit": 1 },
+    { "id": "u1_help", "word": "help", "phonetic": "/help/", "zh": "帮助", "emoji": "🆘", "type": "word", "unit": 1 },
+    { "id": "u1_say", "word": "say", "phonetic": "/seɪ/", "zh": "说", "emoji": "🗣️", "type": "word", "unit": 1 },
+    { "id": "u1_friend", "word": "friend", "phonetic": "/frend/", "zh": "朋友", "emoji": "👫", "type": "word", "unit": 1 },
+    { "id": "u1_good", "word": "good", "phonetic": "/gʊd/", "zh": "好的", "emoji": "👍", "type": "word", "unit": 1 },
+    { "id": "u1_a", "word": "Aa", "phonetic": "/æ/", "zh": "字母 A（apple）", "emoji": "🍎", "type": "letter", "unit": 1 },
+    { "id": "u1_b", "word": "Bb", "phonetic": "/b/", "zh": "字母 B（bed）", "emoji": "🛏️", "type": "letter", "unit": 1 },
+    { "id": "u1_c", "word": "Cc", "phonetic": "/k/", "zh": "字母 C（cat）", "emoji": "🐱", "type": "letter", "unit": 1 },
+    { "id": "u1_d", "word": "Dd", "phonetic": "/d/", "zh": "字母 D（dog）", "emoji": "🐶", "type": "letter", "unit": 1 }
+  ]
+}

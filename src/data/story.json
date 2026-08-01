@@ -1,0 +1,20 @@
+{
+  "chapters": [
+    {
+      "id": 1,
+      "intro": [
+        { "speaker": "nar", "name": "旁白", "emoji": "🌧️", "text": "暑假的第一天，窗外下着雨。你在旧书柜里发现了一本闪闪发光的书。", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "啊！终于有人找到我了！我是魔法英语书，我的词语全被黑雾怪偷走了！", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "你愿意当我的小魔法师，帮我把词语念回来吗？", "voice": "zh" },
+        { "speaker": "kid", "name": "你", "emoji": "🧙‍♂️", "text": "我愿意！", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "太好了！我们先用魔法和大家打个招呼吧。跟我念：Hello! Nice to meet you!", "voice": "en" }
+      ],
+      "outro": [
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "太棒了，小魔法师！第一片魔法宝石亮起来了！你学会了好多词语！", "voice": "zh" },
+        { "speaker": "book", "name": "魔法英语书", "emoji": "📖", "text": "明天，我带你去见我的家人们，他们也会帮我们找回词语。", "voice": "zh" },
+        { "speaker": "nar", "name": "旁白", "emoji": "🌙", "text": "魔法书合上了，但它还在轻轻发着光……", "voice": "zh" }
+      ],
+      "nextHint": "🔮 明天：魔法书带你回家见家人，新的词语魔力正等着你！"
+    }
+  ]
+}

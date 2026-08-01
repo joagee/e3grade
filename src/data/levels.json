@@ -1,0 +1,12 @@
+{
+  "chapters": [
+    {
+      "id": 1,
+      "unit": "Making friends",
+      "zhUnit": "交朋友",
+      "scene": "🏠 魔法书屋",
+      "wordIds": ["u1_name", "u1_nice", "u1_ear", "u1_hand", "u1_eye", "u1_mouth", "u1_arm", "u1_can", "u1_share", "u1_smile", "u1_listen", "u1_help", "u1_say", "u1_friend", "u1_good"],
+      "letterIds": ["u1_a", "u1_b", "u1_c", "u1_d"]
+    }
+  ]
+}
