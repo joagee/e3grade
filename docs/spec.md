@@ -64,22 +64,22 @@ docs/
   ideas/english-adventure-islands.md   → 方案 one-pager
   spec.md                              → 本文件
   manual-test-checklist.md             → 手动验收清单
-  content/                             → 内容数据（JSON，与代码分离）
-    story.json                         → 6 章剧本（剧情节点、台词、悬念预告）
-    levels.json                        → 关卡库（90 词，四步学习流水线：听→跟读→听音选词→看图/看词选词）
-    vocabulary.json                    → 词汇表（含音标、中文释义）
-    economy.json                       → 金币产出/物价/盲盒概率/保底数值表
-    avatars.json                       → 主角形象、装扮定义（SVG/emoji）
 src/
   index.html            → PWA 入口
   css/styles.css        → 全部样式
+  data/                 → 内容数据（JSON，随 Pages 部署，与代码分离）
+    story.json          → 6 章剧本（剧情节点、台词、悬念预告）
+    levels.json         → 章节-词汇映射与关卡配置（四步流水线）
+    vocabulary.json     → 词汇表（含音标、中文释义、emoji 图形）
+    economy.json        → 金币产出规则 + 盲盒机制数值（物价/概率在 avatars.json）
+    avatars.json        → 主角形象 + 装扮全量定义（价格、来源、稀有度、盲盒权重）
   js/main.js            → 启动、视图路由、状态初始化
   js/story.js           → 剧情演出引擎（逐行文本+语音+场景图）
   js/game.js            → 关卡引擎（四步流水线：Learn→Repeat→Listen&Choose→Look&Choose）
   js/economy.js         → 金币、装扮、盲盒、打卡逻辑
   js/tts.js             → Edge TTS WebSocket 封装（含降级提示）
   js/storage.js         → IndexedDB 封装
-  js/data.js            → 加载 docs/content 数据
+  js/data.js            → fetch 加载 src/data 内容数据
   sw.js                 → Service Worker（离线缓存）
   manifest.webmanifest  → PWA 清单
 ```
@@ -88,7 +88,7 @@ src/
 
 - 命名：变量/函数/文件英文驼峰；数据字段英文 snake_case。
 - 不写代码注释（保持简洁，命名自解释；数据 JSON 用字段名表达含义）。
-- 代码与内容数据分离：剧本/词汇/数值全在 `docs/content/*.json`，`src/js` 不含业务数据。
+- 代码与内容数据分离：剧本/词汇/数值全在 `src/data/*.json`，`src/js` 不含业务数据。
 - 视图切换由 `main.js` 路由控制，单页应用。
 - 面向孩子的文案必须积极、正向、无挫败感语言。
 

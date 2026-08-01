@@ -12,6 +12,7 @@ let data = null;
 let playingChapterId = null;
 
 async function init() {
+  registerSW();
   data = await loadData();
   state = await econ.getState();
   await econ.registerPlay();
@@ -19,7 +20,6 @@ async function init() {
   bindTabs();
   updateTopbar();
   renderMap();
-  registerSW();
 }
 
 function registerSW() {

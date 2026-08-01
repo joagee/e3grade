@@ -13,9 +13,9 @@
   - Files: `src/js/storage.js`
 
 - [ ] **Task 3: 内容数据初始结构 + data.js**
-  - Acceptance: `docs/content/` 下 5 个 JSON（story/levels/vocabulary/economy/avatars）结构定稿，含第 1 章样例数据；data.js 正确加载；economy 含产出/物价/盲盒概率/保底默认值
+  - Acceptance: `src/data/` 下 5 个 JSON（story/levels/vocabulary/economy/avatars）结构定稿，含第 1 章样例数据；data.js 正确加载；economy 含产出/物价/盲盒概率/保底默认值
   - Verify: 控制台打印加载结果
-  - Files: `docs/content/*.json`, `src/js/data.js`
+  - Files: `src/data/*.json`, `src/js/data.js`
 
 ### Checkpoint A: Foundation
 - [ ] 应用壳可打开、视图可切换、IndexedDB 可读写、内容可加载
@@ -45,7 +45,7 @@
 - [ ] **Task 8: 冒险地图 + 每日软限制 + 第 1 章闭环**
   - Acceptance: 地图显示 6 岛 + 解锁状态；当日章节可玩，完成后锁定"今日冒险已完成，明天见"；第 1 章（剧情+流水线+金币+装扮预览）端到端跑通
   - Verify: 完整走一遍第 1 章，次日状态正确
-  - Files: `src/js/main.js`, `src/js/story.js`, `src/js/game.js`, `src/js/economy.js`, `docs/content/story.json`
+  - Files: `src/js/main.js`, `src/js/story.js`, `src/js/game.js`, `src/js/economy.js`, `src/data/story.json`
 
 ### Checkpoint B: 第 1 章可玩闭环（关键里程碑）
 - [ ] 端到端流程无阻塞
@@ -57,12 +57,12 @@
 - [ ] **Task 9: 第 2-4 章内容数据**
   - Acceptance: 第 2/3/4 章剧本（剧情节点、台词、悬念预告）+ 对应单元词汇关卡 + 字母拼读关卡，全部加载可玩
   - Verify: 逐章试玩，无数据缺失
-  - Files: `docs/content/story.json`, `docs/content/levels.json`, `docs/content/vocabulary.json`
+  - Files: `src/data/story.json`, `src/data/levels.json`, `src/data/vocabulary.json`
 
 - [ ] **Task 10: 第 5-6 章 + Revision + 字母拼读内容数据**
   - Acceptance: 第 5/6 章 + Revision（Being a good guest）+ 附录字母音内容全部完成，全 6 章 90 词可玩
   - Verify: 全量走查
-  - Files: `docs/content/story.json`, `docs/content/levels.json`, `docs/content/vocabulary.json`
+  - Files: `src/data/story.json`, `src/data/levels.json`, `src/data/vocabulary.json`
 
 ### Checkpoint C: Content Complete
 - [ ] 6 章 + 90 词全部可玩，无阻塞

@@ -5,6 +5,8 @@ export function defaultState() {
   return {
     coins: 0,
     unlockedChapter: 1,
+    chapterDone: {},
+    dailyDone: null,
     learnedWords: [],
     ownedItems: ['hat_none', 'outfit_none', 'pet_none'],
     equipped: { hat: 'hat_none', outfit: 'outfit_none', pet: 'pet_none' },
@@ -12,6 +14,11 @@ export function defaultState() {
     lastPlayDate: null,
     streak: 0,
   };
+}
+
+export async function persistState(s) {
+  await saveState(s);
+  return s;
 }
 
 export async function getState() {

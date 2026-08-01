@@ -9,7 +9,7 @@
 1. **无构建工具链**：Vanilla JS（ES Modules）+ 手写 Service Worker，静态部署到 Cloudflare Pages。避免 Vite/Webpack 的依赖维护成本，符合"简单优先"。
 2. **Edge TTS 前端 WebSocket 直连**：实测国内网络可达、免费无 key、WebSocket 不受 CORS 限制。Google TTS 实测不可达（已排除）。
 3. **四步流水线是关卡引擎状态机核心**：`Learn → Repeat → Listen&Choose → Look&Choose`，新词强制从 Learn 开始，已学词可跳过。
-4. **内容与代码分离**：剧本/词汇/数值全在 `docs/content/*.json`，`src/js` 不含业务数据，内容创作不影响代码。
+4. **内容与代码分离**：剧本/词汇/数值全在 `src/data/*.json`（Cloudflare Pages 根目录为 src/，随站部署），`src/js` 不含业务数据，内容创作不影响代码。
 5. **数据本地化**：IndexedDB 单设备存储（进度/金币/装扮/盲盒/打卡），无后端无账号，规避儿童数据与隐私问题。
 6. **语音评测一期用自评**：录音回放原音对比，孩子当裁判；AI 评测二期再引入。
 7. **每日软限制（延迟满足）必做**：当日章节完成即锁，"今日冒险已完成，明天见"，不提供一键解锁。
