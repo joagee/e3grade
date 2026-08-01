@@ -88,3 +88,57 @@ body {
 button {
   font-family: inherit;
 }
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(74, 108, 220, 0.3);
+}
+
+.story-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.story-scene {
+  font-size: 56px;
+  text-align: center;
+  padding: 32px 0;
+}
+
+.story-dialog {
+  margin-top: auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(43, 58, 85, 0.08);
+}
+
+.story-speaker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.story-emoji {
+  font-size: 24px;
+}
+
+.story-text {
+  font-size: 20px;
+  line-height: 1.6;
+  min-height: 96px;
+  margin-bottom: 16px;
+}
