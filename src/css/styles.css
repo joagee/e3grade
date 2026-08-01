@@ -142,3 +142,58 @@ button {
   min-height: 96px;
   margin-bottom: 16px;
 }
+
+.game-progress {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.learn-card, .repeat-card, .q-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(43, 58, 85, 0.08);
+}
+
+.learn-emoji { font-size: 72px; }
+.learn-word { font-size: 34px; font-weight: 800; margin: 8px 0 4px; color: var(--primary-dark); }
+.learn-phonetic { color: var(--text-light); font-size: 16px; }
+.learn-zh { font-size: 18px; margin-top: 8px; }
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: #eaf0ff;
+  color: var(--primary-dark);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary { margin-top: 10px; }
+
+.q-emoji { font-size: 72px; }
+.q-hint { color: var(--text-light); margin: 8px 0 16px; }
+.q-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.q-option {
+  padding: 16px 8px;
+  border: 2px solid #e6ecf7;
+  border-radius: 14px;
+  background: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.q-option.wrong { border-color: #ff6b6b; color: #ff6b6b; }
+.q-feedback { min-height: 28px; margin-top: 14px; font-size: 18px; font-weight: 700; }
+.q-feedback.good { color: #22a06b; }
+.q-feedback.try { color: #ff8c42; }
