@@ -2,11 +2,16 @@ import { loadData, wordById, chapterById } from './data.js';
 import { speak, VOICES } from './tts.js';
 
 let currentAudio = null;
+let currentUrl = null;
 
 function stopAudio() {
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
+  }
+  if (currentUrl) {
+    URL.revokeObjectURL(currentUrl);
+    currentUrl = null;
   }
 }
 
@@ -14,7 +19,8 @@ function playWord(wordObj) {
   stopAudio();
   speak(wordObj.word, { voice: VOICES.en })
     .then((blob) => {
-      currentAudio = new Audio(URL.createObjectURL(blob));
+      currentUrl = URL.createObjectURL(blob);
+      currentAudio = new Audio(currentUrl);
       currentAudio.play().catch(() => {});
     })
     .catch(() => {});
@@ -122,23 +128,23 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
         return;
       }
       try {
-        if (!stream) {
-          stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          recorder = new MediaRecorder(stream);
-          recorder.ondataavailable = (e) => {
-            if (e.data.size > 0) chunks.push(e.data);
-          };
-          recorder.onstop = () => {
-            recordingBlob = new Blob(chunks, { type: recorder.mimeType });
-            chunks = [];
-            playBtn.disabled = false;
-            recordBtn.textContent = '🎤 录音';
-            stream.getTracks().forEach((t) => t.stop());
-          };
-        }
         chunks = [];
         recordingBlob = null;
-        recorder.start();
+        const s = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const rec = new MediaRecorder(s);
+        rec.ondataavailable = (e) => {
+          if (e.data.size > 0) chunks.push(e.data);
+        };
+        rec.onstop = () => {
+          recordingBlob = new Blob(chunks, { type: rec.mimeType });
+          chunks = [];
+          playBtn.disabled = false;
+          recordBtn.textContent = '🎤 录音';
+          s.getTracks().forEach((t) => t.stop());
+        };
+        stream = s;
+        recorder = rec;
+        rec.start();
         recordBtn.textContent = '⏹️ 停';
       } catch (e) {
         recordBtn.textContent = '🎤 麦克风不可用';

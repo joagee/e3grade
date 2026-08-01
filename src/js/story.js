@@ -2,11 +2,16 @@ import { chapterStory, loadData } from './data.js';
 import { speak, VOICES } from './tts.js';
 
 let currentAudio = null;
+let currentUrl = null;
 
 function stopAudio() {
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
+  }
+  if (currentUrl) {
+    URL.revokeObjectURL(currentUrl);
+    currentUrl = null;
   }
 }
 
@@ -19,7 +24,8 @@ function playLine(line) {
   stopAudio();
   speak(line.text, { voice: voiceFor(line) })
     .then((blob) => {
-      currentAudio = new Audio(URL.createObjectURL(blob));
+      currentUrl = URL.createObjectURL(blob);
+      currentAudio = new Audio(currentUrl);
       currentAudio.play().catch(() => {});
     })
     .catch(() => {});
