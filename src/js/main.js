@@ -13,6 +13,7 @@ let data = null;
 let playingChapterId = null;
 
 async function init() {
+  setupDebugOverlay();
   registerSW();
   setupAudioUnlock();
   data = await loadData();
@@ -22,6 +23,20 @@ async function init() {
   bindTabs();
   updateTopbar();
   renderMap();
+}
+
+function setupDebugOverlay() {
+  if (!new URLSearchParams(location.search).has('debug')) return;
+  const el = document.createElement('div');
+  el.id = 'debug-overlay';
+  el.style.cssText = 'position:fixed;top:0;left:0;right:0;max-height:45vh;overflow:auto;background:rgba(0,0,0,0.88);color:#0f0;font:11px monospace;z-index:99999;padding:6px;white-space:pre-wrap;word-break:break-all;';
+  document.body.appendChild(el);
+  const log = (m) => {
+    el.textContent = (el.textContent + '\n' + m).slice(-5000);
+  };
+  window.addEventListener('error', (e) => log('ERR: ' + e.message + ' @' + (e.filename || '').split('/').pop() + ':' + e.lineno));
+  window.addEventListener('unhandledrejection', (e) => log('REJ: ' + (e.reason && e.reason.message) || e.reason));
+  window.__dbg = log;
 }
 
 function setupAudioUnlock() {

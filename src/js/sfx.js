@@ -23,9 +23,17 @@ export function stopTts() {
   }
 }
 
+function playViaElement(blob) {
+  stopTts();
+  const url = URL.createObjectURL(blob);
+  const a = new Audio(url);
+  a.onended = () => URL.revokeObjectURL(url);
+  a.play().catch(() => URL.revokeObjectURL(url));
+}
+
 export function playBlob(blob) {
   const c = getCtx();
-  if (!c) return Promise.resolve();
+  if (!c) return playViaElement(blob);
   return c.decodeAudioData(blob.arrayBuffer()).then((buf) => {
     stopTts();
     const src = c.createBufferSource();
@@ -36,7 +44,25 @@ export function playBlob(blob) {
     };
     src.start();
     currentSrc = src;
-  }).catch(() => {});
+  }).catch((err) => {
+    if (window.__dbg) window.__dbg('decode失败回退: ' + (err && err.message));
+    playViaElement(blob);
+  });
+}
+
+export function playSpeech(text, lang) {
+  if (!('speechSynthesis' in window)) return false;
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    if (lang) u.lang = lang;
+    u.rate = 0.95;
+    window.speechSynthesis.speak(u);
+    return true;
+  } catch (err) {
+    if (window.__dbg) window.__dbg('speechSynthesis失败: ' + (err && err.message));
+    return false;
+  }
 }
 
 function tone(freq, dur, type = 'sine', gain = 0.15, when = 0) {

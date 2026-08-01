@@ -1,12 +1,15 @@
 import { loadData, wordById, chapterById } from './data.js';
 import { speak, VOICES } from './tts.js';
-import { sfx, playBlob, stopTts } from './sfx.js';
+import { sfx, playBlob, playSpeech, stopTts } from './sfx.js';
 
 function playWord(wordObj) {
   stopTts();
   speak(wordObj.word, { voice: VOICES.en })
     .then((blob) => playBlob(blob))
-    .catch(() => {});
+    .catch((err) => {
+      if (window.__dbg) window.__dbg('Edge TTS失败降级系统语音: ' + (err && err.message));
+      playSpeech(wordObj.word, 'en-US');
+    });
 }
 
 function shuffle(arr) {

@@ -64,7 +64,7 @@ export async function speak(text, { voice = VOICES.en } = {}) {
     ws.binaryType = 'arraybuffer';
     const chunks = [];
     let settled = false;
-    const timer = setTimeout(() => fail(new Error('TTS 超时')), 30000);
+    const timer = setTimeout(() => fail(new Error('TTS 超时')), 8000);
 
     function fail(err) {
       if (settled) return;
