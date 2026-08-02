@@ -107,10 +107,20 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
     let stream = null;
     let recorder = null;
     let chunks = [];
+    let stopTimer = null;
+
+    const estimateMs = (word) => Math.min(6000, Math.max(1800, word.length * 350 + 700));
+
+    const autoPlay = () => {
+      if (!recordingBlob) return;
+      sfx.tap();
+      const url = URL.createObjectURL(recordingBlob);
+      new Audio(url).play().catch(() => {});
+    };
 
     recordBtn.addEventListener('click', async () => {
       if (recorder && recorder.state === 'recording') {
-        sfx.tap();
+        clearTimeout(stopTimer);
         recorder.stop();
         return;
       }
@@ -125,14 +135,18 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
         rec.onstop = () => {
           recordingBlob = new Blob(chunks, { type: rec.mimeType });
           chunks = [];
-          playBtn.disabled = false;
-          recordBtn.textContent = '🎤 录音';
+          clearTimeout(stopTimer);
           s.getTracks().forEach((t) => t.stop());
+          recordBtn.textContent = '🎤 再录一遍';
+          autoPlay();
         };
         stream = s;
         recorder = rec;
         rec.start();
         recordBtn.textContent = '⏹️ 停';
+        stopTimer = setTimeout(() => {
+          if (rec && rec.state === 'recording') rec.stop();
+        }, estimateMs(w.word));
       } catch (e) {
         recordBtn.textContent = '🎤 麦克风不可用';
         recordBtn.disabled = true;

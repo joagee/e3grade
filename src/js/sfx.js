@@ -92,8 +92,9 @@ export const sfx = {
     tone(1320, 0.2, 'triangle', 0.16, 0.18);
   },
   wrong() {
-    tone(392, 0.14, 'triangle', 0.2);
-    tone(294, 0.2, 'triangle', 0.2, 0.12);
+    tone(466, 0.12, 'triangle', 0.22);
+    tone(392, 0.12, 'triangle', 0.22, 0.1);
+    tone(311, 0.2, 'triangle', 0.22, 0.2);
   },
   coin() {
     tone(988, 0.08, 'square', 0.1);
