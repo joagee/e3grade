@@ -1,7 +1,7 @@
 import { loadData, wordById, chapterById } from './data.js';
 import { speak, VOICES } from './tts.js';
 import { sfx, playBlob, playSpeech, stopTts } from './sfx.js';
-import { startZoo } from './zoo.js';
+import { startQuest } from './quest.js';
 
 function playWord(wordObj) {
   stopTts();
@@ -35,8 +35,8 @@ function pickOptions(pool, targetId, count) {
 export async function startChapter(container, chapterId, { learnedWords = [], onComplete } = {}) {
   await loadData();
   const chapter = chapterById(chapterId);
-  if (chapter.gameType === 'zoo') {
-    return startZoo(container, chapterId, { learnedWords, onComplete });
+  if (chapter.gameType === 'quest') {
+    return startQuest(container, chapterId, { learnedWords, onComplete });
   }
   const newWordIds = chapter.wordIds.filter((id) => !learnedWords.includes(id));
   const pool = chapter.wordIds;
