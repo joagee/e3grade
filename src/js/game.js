@@ -111,10 +111,27 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
 
     const estimateMs = (word) => Math.min(6000, Math.max(1800, word.length * 350 + 700));
 
-    const autoPlay = () => {
-      if (!recordingBlob) return;
+    const playRecording = (blob) => {
       sfx.tap();
-      playBlob(recordingBlob);
+      const url = URL.createObjectURL(blob);
+      const a = new Audio(url);
+      a.preload = 'auto';
+      const cleanup = () => URL.revokeObjectURL(url);
+      a.onended = cleanup;
+      a.onerror = cleanup;
+      const doPlay = () => {
+        a.currentTime = 0;
+        a.play().catch(() => {
+          cleanup();
+          playBlob(blob);
+        });
+      };
+      if (a.readyState >= 1) doPlay();
+      else a.onloadedmetadata = doPlay;
+    };
+
+    const autoPlay = () => {
+      if (recordingBlob) playRecording(recordingBlob);
     };
 
     recordBtn.addEventListener('click', async () => {
@@ -154,8 +171,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
     });
 
     playBtn.addEventListener('click', () => {
-      sfx.tap();
-      if (recordingBlob) playBlob(recordingBlob);
+      if (recordingBlob) playRecording(recordingBlob);
     });
   }
 
