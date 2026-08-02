@@ -114,8 +114,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
     const autoPlay = () => {
       if (!recordingBlob) return;
       sfx.tap();
-      const url = URL.createObjectURL(recordingBlob);
-      new Audio(url).play().catch(() => {});
+      playBlob(recordingBlob);
     };
 
     recordBtn.addEventListener('click', async () => {
@@ -137,6 +136,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
           chunks = [];
           clearTimeout(stopTimer);
           s.getTracks().forEach((t) => t.stop());
+          playBtn.disabled = false;
           recordBtn.textContent = '🎤 再录一遍';
           autoPlay();
         };
@@ -155,10 +155,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
 
     playBtn.addEventListener('click', () => {
       sfx.tap();
-      if (recordingBlob) {
-        const url = URL.createObjectURL(recordingBlob);
-        new Audio(url).play().catch(() => {});
-      }
+      if (recordingBlob) playBlob(recordingBlob);
     });
   }
 
