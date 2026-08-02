@@ -399,3 +399,72 @@ button {
 .result-gems, .result-coins {
   animation: fadeUp 0.5s ease;
 }
+
+.zoo-view { text-align: center; }
+.zoo-banner { font-size: 34px; font-weight: 800; margin-bottom: 8px; }
+.zoo-hint { color: var(--text-light); margin-bottom: 16px; font-weight: 600; }
+.zoo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.zoo-animal {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 12px 6px;
+  box-shadow: 0 4px 12px rgba(120, 140, 200, 0.14);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.zoo-animal.speaking {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 4px #ffd23f, 0 6px 16px rgba(120, 140, 200, 0.2);
+}
+.zoo-emoji { font-size: 40px; display: block; }
+.zoo-name { font-size: 14px; font-weight: 800; color: var(--primary-dark); }
+
+.zoo-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 12px rgba(120, 140, 200, 0.14);
+  font-weight: 700;
+}
+.zoo-rescued { font-size: 14px; }
+.zoo-count { color: var(--primary-dark); font-size: 14px; }
+
+.zoo-cage {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  text-align: center;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 22px rgba(120, 140, 200, 0.18);
+  border-bottom: 6px solid #c9b8ff;
+}
+.cage-bars { font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.cage-animal { font-size: 78px; position: relative; transition: transform 0.3s; }
+.cage-animal.look-big { font-size: 88px; }
+.cage-animal.repeat-animal { font-size: 84px; }
+.cage-animal.rescued { animation: bounce 0.5s ease; }
+.zoo-q-hint { color: var(--text-light); margin: 8px 0 14px; font-weight: 600; }
+
+.zoo-beat {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(120, 140, 200, 0.2);
+}
+.beat-emoji { font-size: 72px; margin-bottom: 12px; animation: bounce 0.5s ease; }
+.beat-text { font-size: 19px; font-weight: 700; line-height: 1.6; margin-bottom: 20px; }
+
+.zoo-finale {
+  background: linear-gradient(160deg, #fff3d6, #ffe9f2);
+  border-radius: var(--radius);
+  padding: 34px 24px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(120, 140, 200, 0.2);
+}
+.finale-title { font-size: 26px; font-weight: 800; margin-bottom: 14px; color: var(--primary-dark); }
+.finale-animals { font-size: 34px; margin-bottom: 12px; letter-spacing: 4px; }
+.finale-text { color: var(--text-light); margin-bottom: 22px; font-weight: 600; }

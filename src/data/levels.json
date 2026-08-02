@@ -21,8 +21,26 @@
       "unit": "Our animal friends",
       "zhUnit": "动物朋友",
       "scene": "🦁 魔法动物乐园",
+      "gameType": "zoo",
       "wordIds": ["u3_dog", "u3_cat", "u3_fish", "u3_bird", "u3_rabbit", "u3_panda", "u3_monkey", "u3_tiger", "u3_lion", "u3_elephant", "u3_giraffe", "u3_fox", "u3_pet", "u3_zoo", "u3_like"],
-      "letterIds": ["u3_i", "u3_j", "u3_k", "u3_l"]
+      "letterIds": ["u3_i", "u3_j", "u3_k", "u3_l"],
+      "quests": [
+        { "wordId": "u3_dog", "type": "listen" },
+        { "wordId": "u3_cat", "type": "look" },
+        { "wordId": "u3_fish", "type": "repeat" },
+        { "wordId": "u3_bird", "type": "listen" },
+        { "wordId": "u3_rabbit", "type": "look" },
+        { "wordId": "u3_panda", "type": "repeat" },
+        { "wordId": "u3_monkey", "type": "listen" },
+        { "wordId": "u3_tiger", "type": "look" },
+        { "wordId": "u3_lion", "type": "repeat" },
+        { "wordId": "u3_elephant", "type": "listen" },
+        { "wordId": "u3_giraffe", "type": "look" },
+        { "wordId": "u3_fox", "type": "repeat" },
+        { "wordId": "u3_pet", "type": "listen" },
+        { "wordId": "u3_zoo", "type": "look" },
+        { "wordId": "u3_like", "type": "repeat" }
+      ]
     },
     {
       "id": 4,
