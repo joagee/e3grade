@@ -323,15 +323,15 @@ button {
 .shop-owned { color: var(--green); font-size: 14px; font-weight: 800; }
 
 .avatar-preview {
-  font-size: 64px;
+  padding: 20px;
   text-align: center;
-  padding: 24px;
   background: linear-gradient(135deg, #fff, #eaf7ff);
   border-radius: var(--radius);
   margin-bottom: 16px;
   box-shadow: 0 6px 18px rgba(120, 140, 200, 0.16);
   border-bottom: 5px solid #8fe3ff;
 }
+.avatar-svg { width: 170px; height: 196px; display: inline-block; }
 .wear-slot {
   background: var(--card);
   border-radius: var(--radius);

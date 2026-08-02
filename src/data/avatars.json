@@ -1,5 +1,5 @@
 {
-  "base": { "emoji": "🧙‍♂️", "name": "小魔法师" },
+  "base": { "emoji": "🧒", "name": "小魔法师", "skin": "#ffd9b8", "hair": "#6b4a2a" },
   "slots": {
     "hat": "帽子",
     "outfit": "衣服",
@@ -10,9 +10,9 @@
     { "id": "hat_red", "slot": "hat", "name": "红色魔法帽", "emoji": "🎩", "price": 30, "source": "shop" },
     { "id": "hat_star", "slot": "hat", "name": "星星魔法帽", "emoji": "🌟", "price": 0, "source": "gacha", "rarity": "rare", "weight": 25 },
     { "id": "hat_rainbow", "slot": "hat", "name": "彩虹皇冠", "emoji": "🌈", "price": 0, "source": "gacha", "rarity": "legend", "weight": 5 },
-    { "id": "outfit_none", "slot": "outfit", "name": "不穿斗篷", "emoji": "", "price": 0, "source": "default" },
-    { "id": "outfit_blue", "slot": "outfit", "name": "蓝色魔法袍", "emoji": "🥼", "price": 40, "source": "shop" },
-    { "id": "outfit_gold", "slot": "outfit", "name": "金色圣袍", "emoji": "👑", "price": 0, "source": "gacha", "rarity": "rare", "weight": 20 },
+    { "id": "outfit_none", "slot": "outfit", "name": "小魔法衣", "emoji": "", "color": "#4e9cff", "price": 0, "source": "default" },
+    { "id": "outfit_blue", "slot": "outfit", "name": "蓝色魔法袍", "emoji": "🥼", "color": "#4e9cff", "price": 40, "source": "shop" },
+    { "id": "outfit_gold", "slot": "outfit", "name": "金色圣袍", "emoji": "👑", "color": "#ffd23f", "price": 0, "source": "gacha", "rarity": "rare", "weight": 20 },
     { "id": "pet_none", "slot": "pet", "name": "没有伙伴", "emoji": "", "price": 0, "source": "default" },
     { "id": "pet_cat", "slot": "pet", "name": "魔法小猫", "emoji": "🐱", "price": 50, "source": "shop" },
     { "id": "pet_dragon", "slot": "pet", "name": "迷你小龙", "emoji": "🐉", "price": 0, "source": "gacha", "rarity": "legend", "weight": 3 }

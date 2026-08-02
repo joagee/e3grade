@@ -233,16 +233,35 @@ function renderShop() {
   });
 }
 
+function avatarSVG() {
+  const equipped = state.equipped;
+  const item = (id) => data.avatars.items.find((i) => i.id === id);
+  const hat = item(equipped.hat);
+  const outfit = item(equipped.outfit);
+  const pet = item(equipped.pet);
+  const b = data.avatars.base;
+  const outfitColor = (outfit && outfit.color) || '#4e9cff';
+  return `
+    <svg viewBox="0 0 200 230" class="avatar-svg">
+      <rect x="72" y="132" width="56" height="80" rx="24" fill="${outfitColor}"/>
+      <path d="M72 152 Q100 138 128 152" stroke="rgba(255,255,255,0.45)" stroke-width="4" fill="none"/>
+      <circle cx="100" cy="92" r="46" fill="${b.skin}"/>
+      <path d="M70 66 Q70 40 88 34 Q92 22 108 22 Q118 26 122 40 Q132 46 132 66 Z" fill="${b.hair}"/>
+      <circle cx="86" cy="88" r="4.5" fill="#3d405b"/>
+      <circle cx="114" cy="88" r="4.5" fill="#3d405b"/>
+      <path d="M76 72 Q82 66 90 72" stroke="#3d405b" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M110 72 Q118 66 124 72" stroke="#3d405b" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M89 108 Q100 118 111 108" stroke="#3d405b" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <circle cx="78" cy="112" r="6" fill="#ff8a80"/>
+      <circle cx="122" cy="112" r="6" fill="#ff8a80"/>
+      <text x="100" y="52" font-size="42" text-anchor="middle">${(hat && hat.emoji) || ''}</text>
+      <text x="166" y="218" font-size="32" text-anchor="middle">${(pet && pet.emoji) || ''}</text>
+    </svg>`;
+}
+
 function renderWardrobe() {
   updateTopbar();
   const equipped = state.equipped;
-  const preview = ['hat', 'outfit', 'pet']
-    .map((slot) => data.avatars.items.find((i) => i.id === equipped[slot]))
-    .filter(Boolean)
-    .map((i) => i.emoji)
-    .join(' ');
-  const previewHtml = `${data.avatars.base.emoji} ${preview}`.trim();
-
   const slotsHtml = Object.entries(data.avatars.slots)
     .map(([slot, label]) => {
       const owned = data.avatars.items.filter((i) => i.slot === slot && state.ownedItems.includes(i.id));
@@ -265,7 +284,7 @@ function renderWardrobe() {
 
   viewEl.innerHTML = `
     <h2 class="view-title">🧸 我的装扮</h2>
-    <div class="avatar-preview">${previewHtml}</div>
+    <div class="avatar-preview">${avatarSVG()}</div>
     ${slotsHtml}`;
 
   document.querySelectorAll('.wear-item').forEach((btn) => {
