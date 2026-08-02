@@ -82,3 +82,25 @@
 ### Checkpoint D: Complete
 - [x] spec.md 全部 Success Criteria 可验证
 - [x] 孩子试玩反馈已用于调整
+
+## Phase 5: 情景化重构（偏游戏定位，第 3 章示范）
+
+- [x] **Task 13: 情景数据模型**
+  - Acceptance: levels.json 第 3 章加 gameType=zoo + quests（15 谜题 listen/look/repeat 混合）；story.json 加 beats 节拍
+  - Verify: JSON 语法 + CDP 加载
+  - Files: `src/data/levels.json`, `src/data/story.json`
+
+- [x] **Task 14: zoo.js 情景引擎**
+  - Acceptance: 集中听学（自动连播）→ 动物救出谜题（听音解锁/看图对名/跟读唤醒，答对推进动物状态）→ 情景节拍（每 3 只）→ 终章狂欢 → onComplete(saved)；连击音效；防重复提交
+  - Verify: CDP 全流程（saved=15）；repeat 防重复
+  - Files: `src/js/zoo.js`
+
+- [x] **Task 15: game.js 分支 + CSS**
+  - Acceptance: gameType=zoo 章节走 startZoo；其他章节保持原流程；情景 UI 样式（动物笼/已救出/节拍/终章）
+  - Verify: 本地回归
+  - Files: `src/js/game.js`, `src/css/styles.css`
+
+- [ ] **Task 16: 孩子试玩第 3 章（关键验证）**
+  - Acceptance: 孩子主动想"救出下一只动物"、无明显无聊、想继续下一章
+  - Verify: 真机试玩反馈
+  - Files: 无（观察记录）

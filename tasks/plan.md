@@ -57,6 +57,13 @@
 - [x] 全部成功标准可验证（见 spec.md Success Criteria）
 - [x] 孩子试玩反馈后调整金币数值
 
+### Phase 5: 情景化重构（偏游戏定位，第 3 章示范）
+- [x] 设计：情景数据模型（quests 谜题类型 + beats 节拍剧情），levels/story 扩展
+- [x] zoo.js 情景引擎：集中听学 + 动物解锁状态机（听音/看图/跟读三类谜题）+ 情景节拍 + 连击 + 终章狂欢
+- [x] game.js 分支 gameType=zoo；CSS 情景 UI
+- [ ] **孩子试玩第 3 章**（关键验证：主动"追着救下一只动物"）
+- [ ] 验证通过后铺其余章节情景化（引擎复用）
+
 ## Risks and Mitigations
 
 | Risk | Impact | Mitigation |
