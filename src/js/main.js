@@ -22,6 +22,11 @@ async function init() {
   state = await econ.getState();
   bindTabs();
   updateTopbar();
+  const direct = new URLSearchParams(location.search).get('chapter');
+  if (direct) {
+    startChapterFlow(Number(direct));
+    return;
+  }
   renderMap();
 }
 
