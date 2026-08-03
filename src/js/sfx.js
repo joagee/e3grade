@@ -42,23 +42,25 @@ function playViaElement(blob) {
   }
 }
 
-export function playBlob(blob) {
+export async function playBlob(blob) {
   const c = getCtx();
   if (!c) return playViaElement(blob);
-  return c.decodeAudioData(blob.arrayBuffer()).then((buf) => {
+  try {
+    const buf = await blob.arrayBuffer();
+    const decoded = await c.decodeAudioData(buf);
     stopTts();
     const src = c.createBufferSource();
-    src.buffer = buf;
+    src.buffer = decoded;
     src.connect(c.destination);
     src.onended = () => {
       if (currentSrc === src) currentSrc = null;
     };
     src.start();
     currentSrc = src;
-  }).catch((err) => {
+  } catch (err) {
     if (window.__dbg) window.__dbg('decode失败回退: ' + (err && err.message));
     playViaElement(blob);
-  });
+  }
 }
 
 export function playSpeech(text, lang) {

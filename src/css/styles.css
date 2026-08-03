@@ -400,25 +400,25 @@ button {
   animation: fadeUp 0.5s ease;
 }
 
-.zoo-view { text-align: center; }
-.zoo-banner { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
-.zoo-hint { color: var(--text-light); margin-bottom: 10px; font-weight: 600; font-size: 15px; }
-.zoo-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 12px; }
+.zoo-view { text-align: center; display: flex; flex-direction: column; height: 100%; }
+.zoo-banner { font-size: 30px; font-weight: 800; margin: 6px 0; }
+.zoo-hint { color: var(--text-light); margin-bottom: 8px; font-weight: 600; font-size: 15px; }
+.zoo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 8px 0; flex: 1; align-content: center; }
 .zoo-animal {
   background: var(--card);
-  border-radius: 12px;
-  padding: 4px 2px;
-  box-shadow: 0 3px 8px rgba(120, 140, 200, 0.12);
+  border-radius: 14px;
+  padding: 10px 4px;
+  box-shadow: 0 4px 12px rgba(120, 140, 200, 0.14);
   transition: transform 0.2s, box-shadow 0.2s;
   text-align: center;
 }
 .zoo-animal.speaking {
-  transform: scale(1.12);
+  transform: scale(1.1);
   box-shadow: 0 0 0 3px #ffd23f, 0 6px 16px rgba(120, 140, 200, 0.2);
 }
-.zoo-emoji { font-size: 28px; display: block; line-height: 1.2; }
-.zoo-name { font-size: 11px; font-weight: 800; color: var(--primary-dark); display: block; }
-.zoo-zh { font-size: 10px; color: var(--text-light); display: block; }
+.zoo-emoji { font-size: 36px; display: block; line-height: 1.2; }
+.zoo-name { font-size: 13px; font-weight: 800; color: var(--primary-dark); display: block; }
+.zoo-zh { font-size: 11px; color: var(--text-light); display: block; }
 
 .zoo-top {
   display: flex;

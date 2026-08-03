@@ -199,7 +199,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
         <div class="cage-word">${w.word} <span class="zoo-zh">${w.zh}</span></div>
         <p class="zoo-q-hint">${theme.listenHint}</p>
         <button class="btn q-listen">🔊 再听一遍</button>
-        <div class="q-options">${options.map((o) => `<button class="q-option" data-w="${o.word}">${o.emoji} ${o.word}</button>`).join('')}</div>
+        <div class="q-options">${options.map((o) => `<button class="q-option" data-w="${o.word}">${o.emoji}</button>`).join('')}</div>
         <div class="q-feedback"></div>
       </div>`;
     bindChoose(w, true);
