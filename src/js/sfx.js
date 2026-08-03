@@ -14,6 +14,15 @@ export function unlock() {
   if (c && c.state === 'suspended') c.resume().catch(() => {});
 }
 
+export function unlockHtmlAudio() {
+  try {
+    const a = new Audio();
+    a.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+    a.volume = 0;
+    a.play().catch(() => {});
+  } catch (_) {}
+}
+
 let currentSrc = null;
 
 export function stopTts() {
@@ -40,6 +49,7 @@ function playViaElement(blob) {
     a.addEventListener('canplaythrough', doPlay, { once: true });
     a.addEventListener('canplay', doPlay, { once: true });
   }
+  if (window.__dbg) window.__dbg('playViaElement HTMLAudioElement 播放');
 }
 
 export async function playBlob(blob) {
@@ -57,6 +67,7 @@ export async function playBlob(blob) {
     };
     src.start();
     currentSrc = src;
+    if (window.__dbg) window.__dbg('playBlob 解码成功已播放');
   } catch (err) {
     if (window.__dbg) window.__dbg('decode失败回退: ' + (err && err.message));
     playViaElement(blob);

@@ -1,6 +1,6 @@
 import { loadData, wordById, chapterById, chapterStory } from './data.js';
 import { speak, VOICES } from './tts.js';
-import { sfx, playBlob, playSpeech, stopTts } from './sfx.js';
+import { sfx, playBlob, playSpeech, stopTts, unlock, unlockHtmlAudio } from './sfx.js';
 
 function playWord(wordObj) {
   stopTts();
@@ -196,7 +196,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
       <div class="zoo-cage">
         <div class="cage-bars">黑雾怪把它藏起来了！</div>
         <div class="cage-animal">${w.emoji}</div>
-        <div class="cage-word">${w.word} <span class="zoo-zh">${w.zh}</span></div>
+        <div class="cage-zh">${w.zh}</div>
         <p class="zoo-q-hint">${theme.listenHint}</p>
         <button class="btn q-listen">🔊 再听一遍</button>
         <div class="q-options">${options.map((o) => `<button class="q-option" data-w="${o.word}">${o.emoji}</button>`).join('')}</div>
@@ -213,7 +213,6 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
       <div class="zoo-cage">
         <div class="cage-bars">看这个，叫出它的名字！</div>
         <div class="cage-animal look-big">${w.emoji}</div>
-        <div class="cage-word">${w.word} <span class="zoo-zh">${w.zh}</span></div>
         <p class="zoo-q-hint">${theme.lookHint}</p>
         <div class="q-options">${options.map((o) => `<button class="q-option" data-w="${o.word}">${o.word}</button>`).join('')}</div>
         <div class="q-feedback"></div>
@@ -266,6 +265,8 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
         recorder.stop();
         return;
       }
+      unlock();
+      unlockHtmlAudio();
       try {
         chunks = [];
         recordingBlob = null;
@@ -283,7 +284,9 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
           s.getTracks().forEach((t) => t.stop());
           playBtn.disabled = false;
           recordBtn.textContent = '🎤 再念一遍';
-          if (recordingBlob) playRecording(recordingBlob);
+          if (recordingBlob) {
+            setTimeout(() => { unlock(); playRecording(recordingBlob); }, 150);
+          }
         };
         stream = s;
         recorder = rec;

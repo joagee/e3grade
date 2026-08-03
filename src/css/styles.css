@@ -452,6 +452,7 @@ button {
 .cage-animal.rescued { animation: bounce 0.5s ease; }
 .cage-word { font-size: 20px; font-weight: 800; color: var(--primary-dark); margin: 2px 0 8px; }
 .cage-word .zoo-zh { font-size: 14px; }
+.cage-zh { font-size: 16px; font-weight: 700; color: var(--text-light); margin: 2px 0 8px; }
 .zoo-q-hint { color: var(--text-light); margin: 8px 0 12px; font-weight: 600; }
 
 .zoo-beat {
