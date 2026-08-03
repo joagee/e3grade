@@ -71,7 +71,7 @@ function listenPhase(container, wordIds, theme) {
         <div class="zoo-banner">${theme.banner}</div>
         <p class="zoo-hint">${theme.listenTitle}</p>
         <div class="zoo-grid">
-          ${words.map((w, idx) => `<div class="zoo-animal" data-idx="${idx}"><span class="zoo-emoji">${w.emoji}</span><span class="zoo-name">${w.word}</span></div>`).join('')}
+          ${words.map((w, idx) => `<div class="zoo-animal" data-idx="${idx}"><span class="zoo-emoji">${w.emoji}</span><span class="zoo-name">${w.word}</span><span class="zoo-zh">${w.zh}</span></div>`).join('')}
         </div>
         <button class="btn-primary zoo-go" style="display:none">出发去冒险！🚀</button>
       </div>`;
@@ -124,7 +124,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
 
   const showScene = () => `
     <div class="zoo-top">
-      <div class="zoo-rescued">${saved.length ? '已收集：' + saved.map((id) => wordById(id).emoji).join(' ') : '🧀 等你来收集…'}</div>
+      <div class="zoo-rescued">${saved.length ? '已收集：' + saved.map((id) => { const w = wordById(id); return `<span class="rescued-item">${w.emoji}<small>${w.zh}</small></span>`; }).join('') : '🧀 等你来收集…'}</div>
       <div class="zoo-count">还剩 ${quests.length - saved.length} 个</div>
     </div>`;
 
@@ -196,6 +196,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
       <div class="zoo-cage">
         <div class="cage-bars">黑雾怪把它藏起来了！</div>
         <div class="cage-animal">${w.emoji}</div>
+        <div class="cage-word">${w.word} <span class="zoo-zh">${w.zh}</span></div>
         <p class="zoo-q-hint">${theme.listenHint}</p>
         <button class="btn q-listen">🔊 再听一遍</button>
         <div class="q-options">${options.map((o) => `<button class="q-option" data-w="${o.word}">${o.emoji} ${o.word}</button>`).join('')}</div>
@@ -212,6 +213,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
       <div class="zoo-cage">
         <div class="cage-bars">看这个，叫出它的名字！</div>
         <div class="cage-animal look-big">${w.emoji}</div>
+        <div class="cage-word">${w.word} <span class="zoo-zh">${w.zh}</span></div>
         <p class="zoo-q-hint">${theme.lookHint}</p>
         <div class="q-options">${options.map((o) => `<button class="q-option" data-w="${o.word}">${o.word}</button>`).join('')}</div>
         <div class="q-feedback"></div>
@@ -230,6 +232,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
       <div class="zoo-cage">
         <div class="cage-bars">它需要你念出它的名字！</div>
         <div class="cage-animal repeat-animal">${w.emoji}</div>
+        <div class="cage-word">${w.word} <span class="zoo-zh">${w.zh}</span></div>
         <p class="zoo-q-hint">${theme.repeatHint}</p>
       </div>
       <button class="btn-primary repeat-listen">🔊 听原音</button>
@@ -254,21 +257,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
 
     const playRecording = (blob) => {
       sfx.tap();
-      const url = URL.createObjectURL(blob);
-      const a = new Audio(url);
-      a.preload = 'auto';
-      const cleanup = () => URL.revokeObjectURL(url);
-      a.onended = cleanup;
-      a.onerror = cleanup;
-      const doPlay = () => {
-        a.currentTime = 0;
-        a.play().catch(() => {
-          cleanup();
-          playBlob(blob);
-        });
-      };
-      if (a.readyState >= 1) doPlay();
-      else a.onloadedmetadata = doPlay;
+      playBlob(blob);
     };
 
     recordBtn.addEventListener('click', async () => {
@@ -281,7 +270,9 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
         chunks = [];
         recordingBlob = null;
         const s = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const rec = new MediaRecorder(s);
+        const mime = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus'
+          : MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : '';
+        const rec = new MediaRecorder(s, mime ? { mimeType: mime } : undefined);
         rec.ondataavailable = (e) => {
           if (e.data.size > 0) chunks.push(e.data);
         };

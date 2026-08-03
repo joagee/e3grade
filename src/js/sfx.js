@@ -27,8 +27,19 @@ function playViaElement(blob) {
   stopTts();
   const url = URL.createObjectURL(blob);
   const a = new Audio(url);
-  a.onended = () => URL.revokeObjectURL(url);
-  a.play().catch(() => URL.revokeObjectURL(url));
+  a.preload = 'auto';
+  const cleanup = () => URL.revokeObjectURL(url);
+  a.onended = cleanup;
+  a.onerror = cleanup;
+  const doPlay = () => {
+    a.currentTime = 0;
+    a.play().catch(() => cleanup());
+  };
+  if (a.readyState >= 3) doPlay();
+  else {
+    a.addEventListener('canplaythrough', doPlay, { once: true });
+    a.addEventListener('canplay', doPlay, { once: true });
+  }
 }
 
 export function playBlob(blob) {

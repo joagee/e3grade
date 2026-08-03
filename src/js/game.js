@@ -117,21 +117,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
 
     const playRecording = (blob) => {
       sfx.tap();
-      const url = URL.createObjectURL(blob);
-      const a = new Audio(url);
-      a.preload = 'auto';
-      const cleanup = () => URL.revokeObjectURL(url);
-      a.onended = cleanup;
-      a.onerror = cleanup;
-      const doPlay = () => {
-        a.currentTime = 0;
-        a.play().catch(() => {
-          cleanup();
-          playBlob(blob);
-        });
-      };
-      if (a.readyState >= 1) doPlay();
-      else a.onloadedmetadata = doPlay;
+      playBlob(blob);
     };
 
     const autoPlay = () => {
@@ -148,7 +134,9 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
         chunks = [];
         recordingBlob = null;
         const s = await navigator.mediaDevices.getUserMedia({ audio: true });
-        const rec = new MediaRecorder(s);
+        const mime = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus'
+          : MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : '';
+        const rec = new MediaRecorder(s, mime ? { mimeType: mime } : undefined);
         rec.ondataavailable = (e) => {
           if (e.data.size > 0) chunks.push(e.data);
         };
