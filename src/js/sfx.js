@@ -52,10 +52,18 @@ export function playElementBlob(blob) {
   a.onerror = cleanup;
   const doPlay = () => {
     a.currentTime = 0;
-    a.play().catch((err) => {
-      if (window.__dbg) window.__dbg('HTMLAudioElement play被拦: ' + (err && err.message));
-      cleanup();
-    });
+    a.muted = true;
+    const p = a.play();
+    if (p) {
+      p.then(() => {
+        a.muted = false;
+        if (window.__dbg) window.__dbg('HTMLAudioElement 已播放(muted hack生效)');
+      }).catch((err) => {
+        if (window.__dbg) window.__dbg('HTMLAudioElement play被拦: ' + (err && err.message));
+        cleanup();
+        playBlob(blob);
+      });
+    }
   };
   if (a.readyState >= 3) doPlay();
   else {
