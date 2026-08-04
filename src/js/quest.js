@@ -30,10 +30,15 @@ function estimateListenMs(word) {
   return Math.min(4500, Math.max(1600, word.length * 300 + 900));
 }
 
+function stripEmoji(text) {
+  return text.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu, '').trim();
+}
+
 function hintThen(text, then) {
-  speak(text, { voice: VOICES.zh })
-    .then((blob) => playElementBlob(blob, () => setTimeout(then, 1000)))
-    .catch(() => setTimeout(then, 1000));
+  const clean = stripEmoji(text);
+  speak(clean, { voice: VOICES.zh })
+    .then((blob) => playElementBlob(blob, () => setTimeout(then, 700)))
+    .catch(() => setTimeout(then, 700));
 }
 
 function themeOf(chapter) {
