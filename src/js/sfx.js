@@ -32,7 +32,7 @@ export function stopTts() {
   }
 }
 
-function playViaElement(blob) {
+export function playElementBlob(blob) {
   stopTts();
   const url = URL.createObjectURL(blob);
   const a = new Audio(url);
@@ -49,7 +49,11 @@ function playViaElement(blob) {
     a.addEventListener('canplaythrough', doPlay, { once: true });
     a.addEventListener('canplay', doPlay, { once: true });
   }
-  if (window.__dbg) window.__dbg('playViaElement HTMLAudioElement 播放');
+  if (window.__dbg) window.__dbg('playElementBlob HTMLAudioElement 播放');
+}
+
+function playViaElement(blob) {
+  playElementBlob(blob);
 }
 
 export async function playBlob(blob) {

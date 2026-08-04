@@ -1,6 +1,6 @@
 import { loadData, wordById, chapterById } from './data.js';
 import { speak, VOICES } from './tts.js';
-import { sfx, playBlob, playSpeech, stopTts, unlock, unlockHtmlAudio } from './sfx.js';
+import { sfx, playBlob, playElementBlob, playSpeech, stopTts, unlock, unlockHtmlAudio } from './sfx.js';
 import { startQuest } from './quest.js';
 
 function playWord(wordObj) {
@@ -117,7 +117,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
 
     const playRecording = (blob) => {
       sfx.tap();
-      playBlob(blob);
+      playElementBlob(blob);
     };
 
     const autoPlay = () => {
@@ -150,7 +150,7 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
           playBtn.disabled = false;
           recordBtn.textContent = '🎤 再念一遍';
           if (recordingBlob) {
-            setTimeout(() => { unlock(); playRecording(recordingBlob); }, 150);
+            setTimeout(() => playRecording(recordingBlob), 150);
           }
         };
         stream = s;

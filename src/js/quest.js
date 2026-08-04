@@ -1,6 +1,6 @@
 import { loadData, wordById, chapterById, chapterStory } from './data.js';
 import { speak, VOICES } from './tts.js';
-import { sfx, playBlob, playSpeech, stopTts, unlock, unlockHtmlAudio } from './sfx.js';
+import { sfx, playBlob, playElementBlob, playSpeech, stopTts, unlock, unlockHtmlAudio } from './sfx.js';
 
 function playWord(wordObj) {
   stopTts();
@@ -256,7 +256,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
 
     const playRecording = (blob) => {
       sfx.tap();
-      playBlob(blob);
+      playElementBlob(blob);
     };
 
     recordBtn.addEventListener('click', async () => {
@@ -285,7 +285,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
           playBtn.disabled = false;
           recordBtn.textContent = '🎤 再念一遍';
           if (recordingBlob) {
-            setTimeout(() => { unlock(); playRecording(recordingBlob); }, 150);
+            setTimeout(() => playRecording(recordingBlob), 150);
           }
         };
         stream = s;
