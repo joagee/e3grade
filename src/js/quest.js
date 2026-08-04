@@ -37,8 +37,8 @@ function stripEmoji(text) {
 function hintThen(text, then) {
   const clean = stripEmoji(text);
   speak(clean, { voice: VOICES.zh })
-    .then((blob) => playElementBlob(blob, () => setTimeout(then, 700)))
-    .catch(() => setTimeout(then, 700));
+    .then((blob) => playElementBlob(blob, () => setTimeout(then, 400)))
+    .catch(() => setTimeout(then, 400));
 }
 
 function themeOf(chapter) {
