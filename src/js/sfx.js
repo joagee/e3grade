@@ -9,6 +9,11 @@ function getCtx() {
   return ctx;
 }
 
+const sharedAudio = new Audio();
+
+const BEEP_WAV = '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'
+  ;
+
 export function unlock() {
   const c = getCtx();
   if (c && c.state === 'suspended') c.resume().catch(() => {});
@@ -16,11 +21,14 @@ export function unlock() {
 
 export function unlockHtmlAudio() {
   try {
-    const a = new Audio();
-    a.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
-    a.volume = 0;
-    a.play().catch(() => {});
-  } catch (_) {}
+    sharedAudio.volume = 0.1;
+    sharedAudio.src = 'data:audio/wav;base64,' + BEEP_WAV;
+    const p = sharedAudio.play();
+    if (p) p.catch(() => {});
+    if (window.__dbg) window.__dbg('unlockHtmlAudio 有声beep已触发');
+  } catch (e) {
+    if (window.__dbg) window.__dbg('unlockHtmlAudio 失败: ' + e.message);
+  }
 }
 
 let currentSrc = null;
@@ -35,14 +43,19 @@ export function stopTts() {
 export function playElementBlob(blob) {
   stopTts();
   const url = URL.createObjectURL(blob);
-  const a = new Audio(url);
+  const a = sharedAudio;
   a.preload = 'auto';
+  a.src = url;
+  a.volume = 1;
   const cleanup = () => URL.revokeObjectURL(url);
   a.onended = cleanup;
   a.onerror = cleanup;
   const doPlay = () => {
     a.currentTime = 0;
-    a.play().catch(() => cleanup());
+    a.play().catch((err) => {
+      if (window.__dbg) window.__dbg('HTMLAudioElement play被拦: ' + (err && err.message));
+      cleanup();
+    });
   };
   if (a.readyState >= 3) doPlay();
   else {

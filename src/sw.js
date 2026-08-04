@@ -1,4 +1,4 @@
-const CACHE = 'eai-v16';
+const CACHE = 'eai-v17';
 const PRECACHE = [
   './',
   './index.html',
