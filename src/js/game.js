@@ -148,10 +148,8 @@ export async function startChapter(container, chapterId, { learnedWords = [], on
           clearTimeout(stopTimer);
           s.getTracks().forEach((t) => t.stop());
           playBtn.disabled = false;
+          playBtn.classList.add('flash');
           recordBtn.textContent = '🎤 再念一遍';
-          if (recordingBlob) {
-            setTimeout(() => playRecording(recordingBlob), 150);
-          }
         };
         stream = s;
         recorder = rec;

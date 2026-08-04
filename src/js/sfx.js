@@ -40,7 +40,7 @@ export function stopTts() {
   }
 }
 
-export function playElementBlob(blob) {
+export function playElementBlob(blob, onEnd) {
   stopTts();
   const url = URL.createObjectURL(blob);
   const a = sharedAudio;
@@ -48,7 +48,7 @@ export function playElementBlob(blob) {
   a.src = url;
   a.volume = 1;
   const cleanup = () => URL.revokeObjectURL(url);
-  a.onended = cleanup;
+  a.onended = () => { cleanup(); if (onEnd) onEnd(); };
   a.onerror = cleanup;
   const doPlay = () => {
     a.currentTime = 0;

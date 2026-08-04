@@ -30,6 +30,12 @@ function estimateListenMs(word) {
   return Math.min(4500, Math.max(1600, word.length * 300 + 900));
 }
 
+function hintThen(text, then) {
+  speak(text, { voice: VOICES.zh })
+    .then((blob) => playElementBlob(blob, () => setTimeout(then, 1000)))
+    .catch(() => setTimeout(then, 1000));
+}
+
 function themeOf(chapter) {
   const t = chapter.questTheme || {};
   return {
@@ -98,7 +104,7 @@ function listenPhase(container, wordIds, theme) {
       resolve();
     });
 
-    speakNext();
+    hintThen(theme.listenTitle, speakNext);
   });
 }
 
@@ -202,7 +208,8 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
         <div class="q-options">${options.map((o) => `<button class="q-option" data-w="${o.word}">${o.emoji}</button>`).join('')}</div>
         <div class="q-feedback"></div>
       </div>`;
-    bindChoose(w, true);
+    bindChoose(w, false);
+    hintThen(theme.listenHint, () => playWord(w));
   }
 
   function renderLookQuest(q) {
@@ -218,6 +225,7 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
         <div class="q-feedback"></div>
       </div>`;
     bindChoose(w, false);
+    hintThen(theme.lookHint, () => {});
   }
 
   function renderRepeatQuest(q, w) {
@@ -283,10 +291,8 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
           clearTimeout(stopTimer);
           s.getTracks().forEach((t) => t.stop());
           playBtn.disabled = false;
+          playBtn.classList.add('flash');
           recordBtn.textContent = '🎤 再念一遍';
-          if (recordingBlob) {
-            setTimeout(() => playRecording(recordingBlob), 150);
-          }
         };
         stream = s;
         recorder = rec;
@@ -305,6 +311,8 @@ function rescuePhase(container, chapterId, quests, theme, onComplete) {
     playBtn.addEventListener('click', () => {
       if (recordingBlob) playRecording(recordingBlob);
     });
+
+    hintThen(theme.repeatHint, () => {});
   }
 
   function showBeat(savedCount) {
